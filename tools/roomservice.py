@@ -35,7 +35,7 @@ except ImportError:
 
 # Config
 # set this to the default remote to use in repo
-default_rem = "sr"
+default_rem = "sb"
 # set this to the default revision to use (branch/tag name)
 default_rev = "lollipop"
 # set this to the remote that you use for projects from your team repos
@@ -44,7 +44,7 @@ default_team_rem = "gh"
 # this shouldn't change unless google makes changes
 local_manifest_dir = ".repo/local_manifests"
 # change this to your name on github (or equivalent hosting)
-android_team = "Spirit-Rom"
+android_team = "SpiritBlood"
 
 
 def check_repo_exists(git_data):
@@ -222,7 +222,7 @@ def parse_device_from_folder(device):
     elif len(search) == 1:
         location = search[0]
     else:
-        print("Your device was not found. Attempting to retrieve device repository from Spirit-Rom Github..")
+        print("Your device was not found. Attempting to retrieve device repository from SpiritBlood Github..")
         location = parse_device_from_manifest(device)
     return location
 
