@@ -450,6 +450,11 @@ ifeq ($(filter-out $(INTERNAL_MODIFIER_TARGETS),$(MAKECMDGOALS)),)
 $(INTERNAL_MODIFIER_TARGETS): $(DEFAULT_GOAL)
 endif
 
+# Make Dirty
+ifeq ($(MAKECMDGOALS),dirty)
+dont_bother := true
+endif
+
 # Bring in all modules that need to be built.
 ifeq ($(HOST_OS),windows)
 SDK_ONLY := true
@@ -1051,6 +1056,15 @@ findbugs: $(INTERNAL_FINDBUGS_HTML_TARGET) $(INTERNAL_FINDBUGS_XML_TARGET)
 clean:
 	@rm -rf $(OUT_DIR)/*
 	@echo -e ${CL_GRN}"Entire build directory removed."${CL_RST}
+
+# Clears out zip and build.prop
+.PHONY: dirty
+dirty:
+	@rm -rf $(OUT_DIR)/target/product/*/system/build.prop
+	@rm -rf $(OUT_DIR)/target/product/*/*.zip
+	@rm -rf $(OUT_DIR)/target/product/*/*.md5sum
+	@rm -rf $(OUT_DIR)/target/product/*/*.txt
+	@echo -e ${CL_GRN}"build.prop, changelog and zip files erased"${CL_RST}	
 
 .PHONY: clobber
 clobber: clean
